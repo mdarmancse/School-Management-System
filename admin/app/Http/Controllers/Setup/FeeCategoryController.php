@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Setup;
 
 use App\Http\Controllers\Controller;
+use App\Model\FeeCategoryModel;
 use Illuminate\Http\Request;
-use App\Model\StudentClassModel;
 
-class StudentClasscontroller extends Controller
+class FeeCategoryController extends Controller
 {
     function view(){
 
-        return view('setup.student_class.ViewClass');
+        return view('setup.student_class.ViewFee');
 
     }
 
     function getData(){
 
-        $result=StudentClassModel::take(10)->get();
+        $result=FeeCategoryModel::take(10)->get();
         return $result;
 
     }
@@ -24,7 +24,7 @@ class StudentClasscontroller extends Controller
     function deleteData(Request $request){
         $id=$request->input('id');
 
-        $result= StudentClassModel::where('id',$id)->delete();
+        $result= FeeCategoryModel::where('id',$id)->delete();
 
         if($result==true){
 
@@ -40,18 +40,18 @@ class StudentClasscontroller extends Controller
 
     function getDetails(Request $req){
         $id= $req->input('id');
-        $result=StudentClassModel::where('id','=',$id)->get();
+        $result=FeeCategoryModel::where('id','=',$id)->get();
         return $result;
     }
 
     function updateData(Request $request){
 
         $id=$request->input('id');
-        $name=$request->input('name');
+        $feeCat=$request->input('feeCat');
 
 
-        $result=StudentClassModel::where('id',$id)->update([
-            'name'=>$name
+        $result=FeeCategoryModel::where('id',$id)->update([
+            'feeCat'=>$feeCat
         ]);
 
         if ($result==true){
@@ -66,10 +66,10 @@ class StudentClasscontroller extends Controller
 
 
 
-        $name=$request->input('name');;
+        $feeCat=$request->input('feeCat');;
 
-        $result=StudentClassModel::insert([
-            'name'=>$name
+        $result=FeeCategoryModel::insert([
+            'feeCat'=>$feeCat
 
         ]);
 
@@ -79,6 +79,4 @@ class StudentClasscontroller extends Controller
             return 0;
         }
     }
-
-
 }

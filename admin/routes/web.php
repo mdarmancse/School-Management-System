@@ -38,8 +38,54 @@ Route::post('/onLogin', 'LoginController@onLogin');
 
 //Student Setup
 
-Route::prefix('setups')->group(function (){
+Route::group(['prefix'=>'setups'],function (){
+    //Class
+    Route::get('/class/classView','Setup\StudentClasscontroller@view');
+    Route::get('/class/getData','Setup\StudentClasscontroller@getData');
+    Route::post('/class/deleteData','Setup\StudentClasscontroller@deleteData');
+    Route::post('/class/getDetails','Setup\StudentClasscontroller@getDetails');
+    Route::post('/class/updateData','Setup\StudentClasscontroller@updateData');
+    Route::post('/class/insertData','Setup\StudentClasscontroller@insertData');
 
-    Route::get('/student/class/view','Setup\StudentClasscontroller@view');
+    //Year
+    Route::get('/year/yearView','Setup\StudentYearController@view');
+    Route::get('/year/getData','Setup\StudentYearController@getData');
+    Route::post('/year/deleteData','Setup\StudentYearController@deleteData');
+    Route::post('/year/getDetails','Setup\StudentYearController@getDetails');
+    Route::post('/year/updateData','Setup\StudentYearController@updateData');
+    Route::post('/year/insertData','Setup\StudentYearController@insertData');
 
+    //group
+    Route::get('/group/groupView','Setup\StudentGroupController@view');
+    Route::get('/group/getData','Setup\StudentGroupController@getData');
+    Route::post('/group/deleteData','Setup\StudentGroupController@deleteData');
+    Route::post('/group/getDetails','Setup\StudentGroupController@getDetails');
+    Route::post('/group/updateData','Setup\StudentGroupController@updateData');
+    Route::post('/group/insertData','Setup\StudentGroupController@insertData');
+
+    //Shift
+    Route::get('/shift/shiftView','Setup\StudentShiftController@view');
+    Route::get('/shift/getData','Setup\StudentShiftController@getData');
+    Route::post('/shift/deleteData','Setup\StudentShiftController@deleteData');
+    Route::post('/shift/getDetails','Setup\StudentShiftController@getDetails');
+    Route::post('/shift/updateData','Setup\StudentShiftController@updateData');
+    Route::post('/shift/insertData','Setup\StudentShiftController@insertData');
+
+    //Fee Category
+    Route::get('/feeCat/feeCatView','Setup\FeeCategoryController@view');
+    Route::get('/feeCat/getData','Setup\FeeCategoryController@getData');
+    Route::post('/feeCat/deleteData','Setup\FeeCategoryController@deleteData');
+    Route::post('/feeCat/getDetails','Setup\FeeCategoryController@getDetails');
+    Route::post('/feeCat/updateData','Setup\FeeCategoryController@updateData');
+    Route::post('/feeCat/insertData','Setup\FeeCategoryController@insertData');
+
+    //Fee Amount
+    Route::get('/amount/amountView','Setup\FeeAmountController@view');
+    Route::get('/amount/getData','Setup\FeeAmountController@getData');
+    Route::post('/amount/deleteData','Setup\FeeAmountController@deleteData');
+    Route::post('/amount/getDetails','Setup\FeeAmountController@getDetails');
+    Route::post('/amount/updateData','Setup\FeeAmountController@updateData');
+    Route::post('/amount/insertData','Setup\FeeAmountController@insertData');
 });
+
+

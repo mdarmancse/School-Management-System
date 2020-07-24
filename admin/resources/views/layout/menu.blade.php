@@ -6,7 +6,7 @@
                 <ul class="navbar-nav mr-auto mt-md-0">
                     <li class="nav-item "> <a class="nav-link nav-toggler  hidden-md-up  waves-effect waves-dark" href="javascript:void(0)"><i class="fas  fa-bars"></i></a></li>
                     <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="fas fa-bars"></i></a> </li>
-                    <li class="nav-item mt-3">ADMIN</li>
+                    <li class="nav-item mt-3">ABC School</li>
                 </ul>
                 <ul class="navbar-nav my-lg-0">
                     <li class="nav-item"><a href="{{url('/LoginIndex')}}" class="btn btn-sm btn-danger">Logout</a></li>
@@ -23,11 +23,15 @@
                     <li> <a href="{{url('/visitor')}}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Visitor</span></a></li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <<i class="fas fa-school"></i> </span></span><span class="hide-menu">Setup</span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <i class="fas fa-school"></i> </span></span><span class="hide-menu">Setup</span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
-                            <li><a href="{{url('/visitor')}}">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="{{url('setups/class/classView')}}">ManageClass</a></li>
+                            <li><a href="{{url('setups/year/yearView')}}">Manage Year</a></li>
+                            <li><a href="{{url('setups/group/groupView')}}">Manage Group</a></li>
+                            <li><a href="{{url('setups/shift/shiftView')}}">Manage Shift</a></li>
+                            <li><a href="{{url('setups/feeCat/feeCatView')}}">Manage Fee Category</a></li>
+                            <li><a href="{{url('setups/amount/amountView')}}">Manage Fee Amount</a></li>
+
 
                         </ul>
                     </li>
