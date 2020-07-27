@@ -1,23 +1,21 @@
 @extends('layout.app')
 @section('content')
 
-
-
     <div id="layoutSidenav_content">
 
         <div class="container-fluid">
             <ol class="breadcrumb mt-4">
-                <li class="breadcrumb-item active">Add Student Year</li>
+                <li class="breadcrumb-item active">Exam type</li>
             </ol>
             <div class="row">
                 <div id="mainDiv" class="col-md-12 p-5 d-none">
-                    <button id="addNew" type="button" class=" btn btn-sm btn-danger">Add Student Year</button>
+                    <button id="addNew" type="button" class=" btn btn-sm btn-danger"><i class="fas fa-plus"></i> Add Exam type</button>
 
                     <table id="DataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th class="th-sm">Sl.</th>
-                            <th class="th-sm">Year</th>
+                            <th class="th-sm">Exam type</th>
                             <th class="th-sm">Edit</th>
                             <th class="th-sm">Delete</th>
                         </tr>
@@ -82,7 +80,7 @@
                             <div id="EditForm" class="d-none">
 
 
-                                <input type="number" id="yearId" class="form-control validate" placeholder="Year">
+                                <input type="text" id="examTypeId" class="form-control validate" placeholder="Exam type">
 
                             </div>
                             <div class="text-center">
@@ -109,13 +107,13 @@
 
                         <div class="modal-body mx-3">
 
-                            <h5>Add student year</h5>
+                            <h5>Add Exam type</h5>
 
 
                             <div id="addForm">
 
 
-                                <input type="number" id="addyearId" class="form-control validate" placeholder="Year">
+                                <input type="text" id="addexamTypeId" class="form-control validate" placeholder="Exam type">
 
                             </div>
                             <div class="modal-footer">
@@ -137,7 +135,7 @@
 
                     getData();
                     function getData() {
-                        axios.get('/setups/year/getData')
+                        axios.get('/setups/examType/getData')
                             .then(function(response) {
 
                                 if (response.status == 200) {
@@ -152,7 +150,7 @@
                                         $('<tr>').html(
 
                                             "<th>" + jsonData[i].id + "</th>" +
-                                            "<th>" + jsonData[i].year + "</th>" +
+                                            "<th>" + jsonData[i].examType + "</th>" +
                                             "<td ><a class='Edit' data-id=" + jsonData[i].id + "><i class='fas fa-edit'></i></a></td>"+
                                             "<td ><a class='Delete' data-id=" + jsonData[i].id + "><i class='fas fa-trash-alt'></i></a></td>"
 
@@ -205,7 +203,7 @@
 
                     function deleteData(deleteId) {
                         $('#DeleteConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>");
-                        axios.post('/setups/year/deleteData', {
+                        axios.post('/setups/examType/deleteData', {
                             id: deleteId
                         })
 
@@ -245,7 +243,7 @@
 
                     function getUpdateDetails(detailsId) {
 
-                        axios.post('/setups/year/getDetails', {
+                        axios.post('/setups/examType/getDetails', {
                             id: detailsId
                         })
                             .then(function(response) {
@@ -257,7 +255,7 @@
                                     var jsonData = response.data;
 
 
-                                    $('#yearId').val(jsonData[0].year);
+                                    $('#examTypeId').val(jsonData[0].examType);
 
 
                                 } else {
@@ -282,23 +280,23 @@
                     $('#EditConfirmBtn').click(function() {
 
                         var id = $('#EditId').html();
-                        var year = $('#yearId').val();
+                        var examType = $('#examTypeId').val();
 
-                        updateDetails(id,year);
+                        updateDetails(id,examType);
 
                     });
 
-                    function updateDetails(id, year) {
-                        if (year.length == 0) {
-                            toastr.error('Class Name is empty');
+                    function updateDetails(id, examType) {
+                        if (examType.length == 0) {
+                            toastr.error('Exam type is empty');
 
                         } else {
 
                             $('#EditConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>");
-                            var url = '/setups/year/updateData';
+                            var url = '/setups/examType/updateData';
                             var detailsData = {
                                 id: id,
-                                year:year
+                                examType:examType
                             };
                             axios.post(url, detailsData)
                                 .then(function(response) {
@@ -347,23 +345,23 @@
                     $('#addConfirmBtn').click(function() {
 
 
-                        var year = $('#addyearId').val();
+                        var examType = $('#addexamTypeId').val();
 
-                        insertDetails(year);
+                        insertDetails(examType);
 
                     });
 
-                    function insertDetails(year) {
-                        if (year.length == 0) {
-                            toastr.error('Year is empty');
+                    function insertDetails(examType) {
+                        if (examType.length == 0) {
+                            toastr.error('Exam type is empty');
 
                         } else {
 
                             $('#AddConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>")
-                            var url = '/setups/year/insertData';
+                            var url = '/setups/examType/insertData';
                             var detailsData = {
 
-                                year: year
+                                examType: examType
                             };
                             axios.post(url, detailsData)
                                 .then(function(response) {
@@ -400,5 +398,6 @@
 
                     }
                 </script>
+
 
 @endsection

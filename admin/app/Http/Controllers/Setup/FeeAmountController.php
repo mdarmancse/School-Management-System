@@ -11,17 +11,35 @@ use Illuminate\Http\Request;
 class FeeAmountController extends Controller
 {
     function view(){
+        $AmountData=FeeAmountModel::select('fee_category_id')->groupBy('fee_category_id')->get();
 
-        return view('setup.student_class.ViewFeeAmount');
+        return view('setup.student_class.ViewFeeAmount',['AmountData'=>$AmountData]);
+
+
+    }
+    function add(){
+
+//        $data['feeCat']=FeeCategoryModel::all();
+//        $data['classes']=StudentClassModel::all();
+
+        $data['fee_categories']=FeeCategoryModel::all();
+        $data['classes']=StudentClassModel::all();
+
+        return view('setup.student_class.AddFeeAmount',$data);
 
     }
 
-    function getData(){
+    function edit($fee_category_id){
 
-        $result=FeeAmountModel::take(10)->get();
-        return $result;
+        $data['editData']=FeeAmountModel::where('fee_category_id',$fee_category_id)->orderBy("class_id","asc")->get();
+        $data['fee_categories']=FeeCategoryModel::all();
+        $data['classes']=StudentClassModel::all();
+
+        return view('setup.student_class.EditFeeAmount',$data);
 
     }
+
+
 
     function deleteData(Request $request){
         $id=$request->input('id');
@@ -40,55 +58,53 @@ class FeeAmountController extends Controller
     }
 
 
-    function getDetails(Request $req){
-        $id= $req->input('id');
-        $result=FeeAmountModel::where('id','=',$id)->get();
-        return $result;
+    function details(Request $req,$fee_category_id){
+        $data['editData']=FeeAmountModel::where('fee_category_id',$fee_category_id)->orderBy("class_id","asc")->get();
+
+
+        return view('setup.student_class.DetailsFeeAmount',$data);
     }
 
-    function updateData(Request $request){
+    function updateData(Request $request,$fee_category_id){
 
-        $id=$request->input('id');
-        $fee_category_id=$request->input('fee_category_id');
-        $class_id=$request->input('class_id');
-        $amount=$request->input('amount');
+        if($request->class_id==NULL){
+        return redirect()->back()->with('error','Sorry! you do not select any item');
 
-
-
-        $result=FeeAmountModel::where('id',$id)->update([
-            'fee_category_id'=>$fee_category_id,
-            'class_id'=>$class_id,
-            'amount'=>$amount
-        ]);
-
-        if ($result==true){
-            return 1;
         }else{
-            return 0;
+            FeeAmountModel::where('fee_category_id',$fee_category_id)->delete();
+            $countClass=count($request->class_id);
+            for($i=0;$i<$countClass;$i++){
+
+                $feeAmount=new FeeAmountModel();
+                $feeAmount->fee_category_id=$request->fee_category_id;
+                $feeAmount->class_id=$request->class_id[$i];
+                $feeAmount->amount=$request->amount[$i];
+                $feeAmount->save();
+            }
+
         }
+        return redirect()->route('fee_view')->with('success',"Data updated succesfully");
     }
 
 
     function insertData(Request $request){
 
 
-        $fee_category_id=$request->input('fee_category_id');
-        $class_id=$request->input('class_id');
-        $amount=$request->input('amount');
+    $countClass=count($request->class_id);
 
+    if($countClass != NULL){
+            for($i=0;$i<$countClass;$i++){
 
-        $result=FeeAmountModel::insert([
-            'fee_category_id'=>$fee_category_id,
-            'class_id'=>$class_id,
-            'amount'=>$amount
+                $feeAmount=new FeeAmountModel();
+                $feeAmount->fee_category_id=$request->fee_category_id;
+                $feeAmount->class_id=$request->class_id[$i];
+                $feeAmount->amount=$request->amount[$i];
+                $feeAmount->save();
+            }
 
-        ]);
+    }
 
-        if ($result==true){
-            return 1;
-        }else{
-            return 0;
-        }
+    return redirect()->route('fee_view')->with('success','Data inserted successfully');
     }
 
 

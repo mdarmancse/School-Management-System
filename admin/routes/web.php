@@ -79,13 +79,42 @@ Route::group(['prefix'=>'setups'],function (){
     Route::post('/feeCat/updateData','Setup\FeeCategoryController@updateData');
     Route::post('/feeCat/insertData','Setup\FeeCategoryController@insertData');
 
+    //Exam Type
+    Route::get('/examType/examTypeView','Setup\ExamTypeController@view');
+    Route::get('/examType/getData','Setup\ExamTypeController@getData');
+    Route::post('/examType/deleteData','Setup\ExamTypeController@deleteData');
+    Route::post('/examType/getDetails','Setup\ExamTypeController@getDetails');
+    Route::post('/examType/updateData','Setup\ExamTypeController@updateData');
+    Route::post('/examType/insertData','Setup\ExamTypeController@insertData');
+
     //Fee Amount
-    Route::get('/amount/amountView','Setup\FeeAmountController@view');
+    Route::get('/amount/amountView','Setup\FeeAmountController@view')->name('fee_view');
+    Route::get('/amount/amountAdd','Setup\FeeAmountController@add');
+    Route::get('/amount/amountEdit/{fee_category_id}','Setup\FeeAmountController@edit')->name('fee_edit');
+    Route::get('/amount/amountDetails/{fee_category_id}','Setup\FeeAmountController@details')->name('fee_details');
     Route::get('/amount/getData','Setup\FeeAmountController@getData');
     Route::post('/amount/deleteData','Setup\FeeAmountController@deleteData');
-    Route::post('/amount/getDetails','Setup\FeeAmountController@getDetails');
-    Route::post('/amount/updateData','Setup\FeeAmountController@updateData');
+    Route::post('/amount/updateData/{fee_category_id}','Setup\FeeAmountController@updateData')->name('fee_update');
     Route::post('/amount/insertData','Setup\FeeAmountController@insertData');
+
+    //Subject
+    Route::get('/subject/subjectView','Setup\SubjectController@view');
+    Route::get('/subject/getData','Setup\SubjectController@getData');
+    Route::post('/subject/deleteData','Setup\SubjectController@deleteData');
+    Route::post('/subject/getDetails','Setup\SubjectController@getDetails');
+    Route::post('/subject/updateData','Setup\SubjectController@updateData');
+    Route::post('/subject/insertData','Setup\SubjectController@insertData');
+
+    //Assign Subject
+    Route::get('/assignsubject/assignsubjectView','Setup\AssignSubjectController@view')->name('assignsubject_view');
+    Route::get('/assignsubject/aassignsubjectAdd','Setup\AssignSubjectController@add');
+    Route::get('/assignsubject/assignsubjectEdit/{class_id}','Setup\AssignSubjectController@edit')->name('assignsubject_edit');
+    Route::get('/assignsubject/assignsubjectDetails/{class_id}','Setup\AssignSubjectController@details')->name('assignsubject_edit');
+   // Route::get('/assignsubject/getData','Setup\AssignSubjectController@getData');
+    Route::post('/assignsubject/deleteData','Setup\AssignSubjectController@deleteData');
+    Route::post('/assignsubject/updateData/{class_id}','Setup\AssignSubjectController@updateData')->name('assignsubject_update');
+    Route::post('/assignsubject/insertData','Setup\AssignSubjectController@insertData');
+
 });
 
 
