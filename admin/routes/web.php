@@ -115,6 +115,27 @@ Route::group(['prefix'=>'setups'],function (){
     Route::post('/assignsubject/updateData/{class_id}','Setup\AssignSubjectController@updateData')->name('assignsubject_update');
     Route::post('/assignsubject/insertData','Setup\AssignSubjectController@insertData');
 
+
+    //Designation
+    Route::get('/designation/designationView','Setup\DesignationController@view');
+    Route::get('/designation/getData','Setup\DesignationController@getData');
+    Route::post('/designation/deleteData','Setup\DesignationController@deleteData');
+    Route::post('/designation/getDetails','Setup\DesignationController@getDetails');
+    Route::post('/designation/updateData','Setup\DesignationController@updateData');
+    Route::post('/designation/insertData','Setup\DesignationController@insertData');
+
+});
+
+
+Route::group(['prefix'=>'students'],function (){
+
+    Route::get('/reg/regView','Students\StudentRegController@view');
+    Route::get('/reg/getData','Students\StudentRegController@getData');
+    Route::post('/reg/deleteData','Students\StudentRegController@deleteData');
+    Route::post('/reg/getDetails','Students\StudentRegController@getDetails');
+    Route::post('/reg/updateData','Students\StudentRegController@updateData');
+    Route::post('/reg/insertData','Students\StudentRegController@insertData');
+
 });
 
 

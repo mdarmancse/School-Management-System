@@ -23,7 +23,7 @@
                     <li> <a href="{{url('/visitor')}}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Visitor</span></a></li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <i class="fas fa-school"></i> </span><span class="hide-menu">Setup</span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <i class="fas fa-school"></i> </span><span class="hide-menu">Manage Setup</span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
                             <li><a href="{{url('setups/class/classView')}}">ManageClass</a></li>
                             <li><a href="{{url('setups/year/yearView')}}">Manage Year</a></li>
@@ -34,8 +34,15 @@
                             <li><a href="{{url('setups/examType/examTypeView')}}">Manage Exam Type</a></li>
                             <li><a href="{{url('setups/subject/subjectView')}}">Manage Subject</a></li>
                             <li><a href="{{url('setups/assignsubject/assignsubjectView')}}">Assign Subject</a></li>
+                            <li><a href="{{url('setups/designation/designationView')}}">Designation</a></li>
 
+                        </ul>
+                    </li>
 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <i class="fas fa-user-graduate"></i> </span><span class="hide-menu">Manage Student</span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            <li><a href="{{url('setups/class/classView')}}">Manage Student</a></li>
 
                         </ul>
                     </li>

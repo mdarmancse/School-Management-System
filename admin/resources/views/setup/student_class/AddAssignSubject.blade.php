@@ -72,9 +72,9 @@
                             <label for="">Subjects</label>
                             <select id="subject_id" name="subject_id[]" class="custom-select custom-select-sm">
                                 <option selected>Select Subject</option>
-{{--                                @foreach($subjects as $subjects)--}}
-{{--                                    <option value="{{$subjects->id}}">{{$subjects->subject}}</option>--}}
-{{--                                @endforeach--}}
+                                @foreach($subjects as $subjects)
+                                    <option value="{{$subjects->id}}">{{$subjects->subject}}</option>
+                                @endforeach
                             </select>
                         </div>
 
