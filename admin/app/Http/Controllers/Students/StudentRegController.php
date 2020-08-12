@@ -50,14 +50,15 @@ class StudentRegController extends Controller
 
     }
 
-    function edit($class_id){
+    function edit($student_id){
 
-        $data['editData']=AssignSubjectModel::where('class_id',$class_id)->orderBy("subject_id","asc")->get();
-        $data['subjects']=SubjectModel::all();
+        $data['editData']=AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        $data['year']=StudentYearModel::orderBy('id','desc')->get();
+        $data['group']=StudentGroupModel::all();
+        $data['shift']=StudentShiftModel::all();
         $data['classes']=StudentClassModel::all();
 
-
-        return view('setup.student_class.EditAssignSubject',$data);
+        return view('student.studentReg.AddStudent',$data);
 
     }
 
@@ -87,28 +88,49 @@ class StudentRegController extends Controller
         return view('setup.student_class.DetailsSubjectMark',$data);
     }
 
-    function updateData(Request $request,$class_id){
+    function updateData(Request $request,$student_id){
 
-        if($request->class_id==NULL){
-            return redirect()->back()->with('error','Sorry! you do not select any item');
+        DB::transaction(function () use($request,$student_id){
 
-        }else{
-            AssignSubjectModel::where('class_id',$class_id)->delete();
-            $countSubject=count($request->subject_id);
-            for($i=0;$i<$countSubject;$i++){
-
-                $assignSubject=new AssignSubjectModel();
-                $assignSubject->class_id=$request->class_id;
-                $assignSubject->subject_id=$request->subject_id[$i];
-                $assignSubject->full_mark=$request->full_mark[$i];
-                $assignSubject->pass_mark=$request->pass_mark[$i];
-                $assignSubject->get_mark=$request->get_mark[$i];
-                $assignSubject->save();
+            $user=UserModel::where('id',$student_id)->first();
+            $user->name=$request->name;
+            $user->fatherName=$request->fatherName;
+            $user->motherName=$request->motherName;
+            $user->email=$request->email;
+            $user->mobile=$request->mobile;
+            $user->address=$request->address;
+            $user->gender=$request->gender;
+            $user->dob=date('Y-m-d',strtotime($request->dob));
+            if ($request->file('image')){
+                $file=$request->file('image');
+                @unlink(public_path('uploads/students_images/'.$user->image));
+                $fileName=date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('uploads/students_images'),$fileName);
+                $user['image']=$fileName;
             }
+            $user->save();
+
+            $assign_student=AssignStudent::where('id',$request->id)->where('student_id',$student_id)->first();
+            $assign_student->student_id=$user->id;
+            $assign_student->year_id=$request->year_id;
+            $assign_student->class_id=$request->class_id;
+            $assign_student->group_id=$request->group_id;
+            $assign_student->shift_id=$request->shift_id;
+            $assign_student->save();
+
+            $discount_student= DiscountStudent::where('assign_student_id',$request->id)->first();
+            $discount_student->assign_student_id=$assign_student->id;
+            $discount_student->fee_category_id="1";
+            $discount_student->discount=$request->discount;
+            $discount_student->save();
+
+        });
 
 
-        }
-        return redirect()->route('assignsubject_view')->with('success',"Data updated succesfully");
+
+
+
+        return redirect()->route('student_view')->with('success','Data inserted successfully');
     }
 
 

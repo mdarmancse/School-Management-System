@@ -2,55 +2,65 @@
 @section('content')
     <div id="layoutSidenav_content">
 
-
-
         <div id="" class="container mt-4">
-            <form action="{{url('students/student/insertData')}}" id="myForm" method="POST">@csrf
+
+            <ol class="breadcrumb mt-4">
+                <li class="breadcrumb-item active">
+                    @if(isset($editData))
+                      Edit Student
+                        @else
+                    Add Student
+                        @endif
+                     </li>
+            </ol>
+
+
+            <form action="{{(@$editData)?route('students_update',$editData->student_id):route('students_insert')}}" id="myForm" method="POST">@csrf
 
                 <div class="add_item">
-
+                    <input type="hidden" name="id" value="{{(@$editData->id)}}">
                     <div class="form-row">
 
                         <div class="form-group col-md-4">
                             <label for="">Student Name:</label>
 
-                            <input type="text" name="name" id="nameId" class="form-control validate">
+                            <input type="text" name="name" value="{{@$editData['student']['name']}}" id="nameId" class="form-control validate">
 
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Father Name:</label>
 
-                            <input type="text" name="fatherName" id="fnameId" class="form-control validate">
+                            <input type="text" name="fatherName" value="{{@$editData['student']['fatherName']}}" id="fnameId" class="form-control validate">
 
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="">Mother Name:</label>
 
-                            <input type="text" name="motherName" id="examTypeId" class="form-control validate">
+                            <input type="text" name="motherName" value="{{@$editData['student']['motherName']}}" id="examTypeId" class="form-control validate">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Mobile No:</label>
 
-                            <input type="number" name="mobile" id="examTypeId" class="form-control validate">
+                            <input type="number" name="mobile" value="{{@$editData['student']['mobile']}}" id="examTypeId" class="form-control validate">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Address:</label>
 
-                            <input type="text" name="address" id="examTypeId" class="form-control validate">
+                            <input type="text" name="address" value="{{@$editData['student']['fatherName']}}" id="examTypeId" class="form-control validate">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Email:</label>
 
-                            <input type="email" name="email" id="examTypeId" class="form-control validate">
+                            <input type="email" name="email" value="{{@$editData['student']['email']}}" id="examTypeId" class="form-control validate">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Gender:</label>
 
                             <select id="genderId"  name="gender" class="form-control">
                                 <option>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="Male" {{(@$editData['student']['gender']=='Male')?'selected':''}}>Male</option>
+                                <option value="Female" {{(@$editData['student']['gender']=='Female')?'selected':''}}>Female</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
@@ -59,22 +69,22 @@
 
                             <select id="religionId"  name="religion" class="form-control">
                                 <option>Select Religion</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Other">Other</option>
+                                <option value="Muslim" {{(@$editData['student']['religion']=='Muslim')?'selected':''}} >Muslim</option>
+                                <option value="Hindu" {{(@$editData['student']['religion']=='Hindu')?'selected':''}}>Hindu</option>
+                                <option value="Other" {{(@$editData['student']['religion']=='Other')?'selected':''}}>Other</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="">Date of Birth:</label>
 
-                            <input type="date" name="dob" id="examTypeId" class="form-control validate">
+                            <input type="date" name="dob" value="{{@$editData['student']['dob']}}" id="examTypeId" class="form-control validate">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="">Discount:</label>
 
-                            <input type="number" name="discount" id="examTypeId" class="form-control validate">
+                            <input type="number" name="discount" value="{{@$editData['discount']['discount']}}" id="examTypeId" class="form-control validate">
                         </div>
 
                         <div class="form-group col-md-4">
@@ -83,7 +93,7 @@
                             <select id="yearId"  name="year_id" class="form-control">
                                 <option>Select Year</option>
                                 @foreach($year as $year)
-                                    <option value="{{$year->id}}">{{$year->year}}</option>
+                                    <option value="{{$year->id}}" {{(@$editData->year_id==$year->id)?'selected':""}}>{{$year->year}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -93,7 +103,7 @@
                             <select id="classId" name="class_id"  class="form-control">
                                 <option>Select Class</option>
                                 @foreach($classes as $classes)
-                                    <option value="{{$classes->id}}">{{$classes->name}}</option>
+                                    <option value="{{$classes->id}}" {{(@$editData->class_id==$classes->id)?'selected':""}}>{{$classes->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -103,7 +113,7 @@
                             <select id="RoleId" name="group_id" class="form-control">
                                 <option>Select Group</option>
                                 @foreach($group as $group)
-                                    <option value="{{$group->id}}">{{$group->group}}</option>
+                                    <option value="{{$group->id}}"  {{(@$editData->group_id==$group->id)?'selected':""}}>{{$group->group}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -113,7 +123,7 @@
                             <select id="RoleId" name="shift_id" class="form-control">
                                 <option>Select Shift</option>
                                 @foreach($shift as $shift)
-                                    <option value="{{$shift->id}}">{{$shift->shift}}</option>
+                                    <option value="{{$shift->id}}"  {{(@$editData->shift_id==$shift->id)?'selected':""}}>{{$shift->shift}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -121,12 +131,12 @@
                         <div class="form-group col-md-4">
                             <label for="">Image:</label>
 
-                            <input type="file" name="image" id="image" class="form-control validate">
+                            <input type="file" name="image"  id="image" class="form-control validate">
                         </div>
 
                         <div class="form-group col-md-4">
 
-                        <img id="showImg" src="{{asset('images/noimg.png')}}" style="width: 100px;height: 100px;border-radius: 10px;border:1px solid black">
+                        <img id="showImg" src="{{!empty($editData['student']['image'])?url('public/students_images/'.$editData['student']['image']):url('public/images/noimg.png')}}" style="width: 100px;height: 100px;border-radius: 10px;border:1px solid black">
 
                         </div>
 
@@ -137,8 +147,7 @@
                 </div>
                 <hr/>
 
-                <button class="btn btn-blue-grey btn-sm" type="submit" form="myForm" value="Submit">Submit</button>
-
+                <button class="btn btn-blue-grey btn-sm" type="submit" form="myForm" value="Submit">{{(@$editData)?'Update':'Submit'}}</button>
             </form>
 
 

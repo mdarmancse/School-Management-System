@@ -6,7 +6,7 @@
 
     <div class="container-fluid">
         <ol class="breadcrumb mt-4">
-            <li class="breadcrumb-item active">Fee Category Amount</li>
+            <li class="breadcrumb-item active">Student List</li>
         </ol>
         <a href="{{url('students/student/studentAdd')}}" > <span class=" btn btn-sm btn-danger mt-4"><i class="fas fa-plus"></i> Add Student</span></a>
         <form action="{{url('students/student/yearClassWise')}}" method="GET">
@@ -69,7 +69,7 @@
                             <th class="th-sm"><img src="{{!empty($AllData['student']['image'])?url('public/students_images/'.$AllData['student']['image']):url('public/images/noimg.png')}}"
                                                    style="width: 70px;height: 80px"
                                 /></th>
-                            <th class="th-sm"><a href="{{route('student_edit',$AllData->id)}}" ><i class="fas fa-edit"></i></a></th>
+                            <th class="th-sm"><a href="{{route('student_edit',$AllData->student_id)}}" ><i class="fas fa-edit"></i></a></th>
 
                             <th class="th-sm"><a href="" ><i class="fas fa-trash-alt"></i></a></th>
                         </tr>
@@ -107,7 +107,7 @@
                                 <th class="th-sm"><img src="{{!empty($AllData['student']['image'])?url('public/students_images/'.$AllData['student']['image']):url('public/images/noimg.png')}}"
                                                        style="width: 70px;height: 80px"
                                     /></th>
-                                <th class="th-sm"><a href="{{route('student_edit',$AllData->id)}}" ><i class="fas fa-edit"></i></a></th>
+                                <th class="th-sm"><a href="{{route('student_edit',$AllData->student_id)}}" ><i class="fas fa-edit"></i></a></th>
 
                                 <th class="th-sm"><a href="" ><i class="fas fa-trash-alt"></i></a></th>
                             </tr>
