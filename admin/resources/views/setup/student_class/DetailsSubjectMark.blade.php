@@ -5,12 +5,12 @@
 
         <div class="container-fluid">
             <ol class="breadcrumb mt-4">
-                <li class="breadcrumb-item active">Manage Assign Subject</li>
+                <li class="breadcrumb-item active">Class {{$editData['0']['class_name']['name']}}</li>
             </ol>
 
             <div class="row">
                 <div id="mainDiv" class="col-md-12 p-5">
-                    <a href="{{url('setups/assignsubject/aassignsubjectAdd')}}" > <span class=" btn btn-sm btn-danger"><i class="fas fa-plus"></i>Assign subject</span></a>
+                    <a href="{{url('setups/assignsubject/assignsubjectView')}}" ><span class=" btn btn-sm btn-danger"><i class="fas fa-list"></i> Assign Marks</span></a>
 
 
                     <table id="DataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -18,22 +18,24 @@
                         <tr>
 
                             <th class="th-sm">Sl.</th>
-                            <th class="th-sm">Classes</th>
-                            <th class="th-sm">Edit</th>
-                            <th class="th-sm">Details</th>
-                            <th class="th-sm">Delete</th>
+                            <th class="th-sm">Subject</th>
+                            <th class="th-sm">Full Mark</th>
+                            <th class="th-sm">Pass Mark</th>
+                            <th class="th-sm">Get Mark</th>
+
                         </tr>
                         </thead>
                         <tbody id="table">
 
-                        @foreach($AllData as $key=>$AllData)
+                        @foreach($editData as $key=>$data)
                             <tr>
                                 <th class="th-sm">{{$key+1}}</th>
 
-                                <th class="th-sm">{{$AllData['class_name']['name']}}</th>
-                                <th class="th-sm"><a href="{{route('assignsubject_edit',$AllData->class_id)}}" ><i class="fas fa-edit"></i></a></th>
-                                <th class="th-sm"><a href="{{route('assignsubject_details',$AllData->class_id)}}" ><i class="fas fa-eye"></i></a></th>
-                                <th class="th-sm"><a href="" ><i class="fas fa-trash-alt"></i></a></th>
+                                <th class="th-sm">{{$data['student_subject']['subject']}}</th>
+                                <th class="th-sm blue-text">{{$data->full_mark}}</th>
+                                <th class="th-sm red-text">{{$data->pass_mark}}</th>
+                                <th class="th-sm green-text">{{$data->get_mark}}</th>
+
                             </tr>
                         @endforeach
 

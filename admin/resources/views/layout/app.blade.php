@@ -37,6 +37,26 @@
 <script type="text/javascript" src="{{asset('js/axios.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#image').change(function (e) {
+            var reader=new FileReader();
+            reader.onload=function (e) {
+                $('#showImg').attr('src',e.target.result)
+
+            };
+            reader.readAsDataURL(e.target.files['0']);
+
+        })
+
+    })
+</script>
+
+
+
+
+
 @yield('script')
 
 </body>

@@ -21,6 +21,7 @@
                     <li class="nav-devider mt-0" style="margin-bottom: 5px"></li>
                     <li> <a href="{{url('/')}}" ><span> <i class="fas fa-home"></i> </span><span class="hide-menu">Home</span></a></li>
                     <li> <a href="{{url('/visitor')}}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Visitor</span></a></li>
+                    <li> <a href="{{url('students/user/userView')}}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Manage User</span></a></li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <i class="fas fa-school"></i> </span><span class="hide-menu">Manage Setup</span></a>
@@ -42,7 +43,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <i class="fas fa-user-graduate"></i> </span><span class="hide-menu">Manage Student</span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
-                            <li><a href="{{url('setups/class/classView')}}">Manage Student</a></li>
+
+                            <li><a href="{{url('students/student/studentView')}}">Manage Student</a></li>
 
                         </ul>
                     </li>

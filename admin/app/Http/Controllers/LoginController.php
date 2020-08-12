@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\UserModel;
 use Illuminate\Http\Request;
-use App\AdminModel;
 use App\Http\Middleware\LoginCheckMiddleware;
 
 class LoginController extends Controller
@@ -21,12 +21,12 @@ class LoginController extends Controller
 
 
     function onLogin(Request $request){
-        $user= $request->input('user');
+        $email= $request->input('email');
         $pass= $request->input('pass');
-        $countValue=AdminModel::where('username','=',$user)->where('password','=',$pass)->count();
+        $countValue=UserModel::where('email','=',$email)->where('password','=',$pass)->count();
 
         if($countValue==1){
-            $request->session()->put('user',$user);
+            $request->session()->put('email',$email);
             return 1;
         }
         else{

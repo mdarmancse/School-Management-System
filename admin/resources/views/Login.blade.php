@@ -10,8 +10,8 @@
                     <div style="height: 450px" class="col-md-6 p-3">
                         <form  action=" "  class="m-5 loginForm">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">User Name</label>
-                                <input required="" name="userName" value="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter User Name">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input required="" name="email" value="" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
@@ -43,11 +43,11 @@
         $('.loginForm').on('submit',function (event) {
             event.preventDefault();
             let formData=$(this).serializeArray();
-            let userName=formData[0]['value'];
+            let email=formData[0]['value'];
             let password=formData[1]['value'];
             let url="/onLogin";
             axios.post(url,{
-                user:userName,
+                email:email,
                 pass:password
             }).then(function (response) {
                 if(response.status==200 && response.data==1){

@@ -109,7 +109,7 @@ Route::group(['prefix'=>'setups'],function (){
     Route::get('/assignsubject/assignsubjectView','Setup\AssignSubjectController@view')->name('assignsubject_view');
     Route::get('/assignsubject/aassignsubjectAdd','Setup\AssignSubjectController@add');
     Route::get('/assignsubject/assignsubjectEdit/{class_id}','Setup\AssignSubjectController@edit')->name('assignsubject_edit');
-    Route::get('/assignsubject/assignsubjectDetails/{class_id}','Setup\AssignSubjectController@details')->name('assignsubject_edit');
+    Route::get('/assignsubject/assignsubjectDetails/{class_id}','Setup\AssignSubjectController@details')->name('assignsubject_details');
    // Route::get('/assignsubject/getData','Setup\AssignSubjectController@getData');
     Route::post('/assignsubject/deleteData','Setup\AssignSubjectController@deleteData');
     Route::post('/assignsubject/updateData/{class_id}','Setup\AssignSubjectController@updateData')->name('assignsubject_update');
@@ -127,14 +127,35 @@ Route::group(['prefix'=>'setups'],function (){
 });
 
 
-Route::group(['prefix'=>'students'],function (){
+Route::group(['prefix'=>'/students'],function (){
 
-    Route::get('/reg/regView','Students\StudentRegController@view');
-    Route::get('/reg/getData','Students\StudentRegController@getData');
-    Route::post('/reg/deleteData','Students\StudentRegController@deleteData');
-    Route::post('/reg/getDetails','Students\StudentRegController@getDetails');
-    Route::post('/reg/updateData','Students\StudentRegController@updateData');
-    Route::post('/reg/insertData','Students\StudentRegController@insertData');
+
+//USER
+    Route::get('/user/userView','Students\UserController@view');
+    Route::get('/user/getData','Students\UserController@getData');
+    Route::post('/user/deleteData','Students\UserController@deleteData');
+    Route::post('/user/getDetails','Students\UserController@getDetails');
+    Route::post('/user/updateData','Students\UserController@updateData');
+    Route::post('/user/insertData','Students\UserController@insertData');
+
+
+//Student Registartion
+//    Route::get('/student/studentView','Students\StudentRegController@view');
+//    Route::get('/student/getData','Students\StudentRegController@getData');
+//    Route::post('/student/deleteData','Students\StudentRegController@deleteData');
+//    Route::post('/student/getDetails','Students\StudentRegController@getDetails');
+//    Route::post('/student/updateData','Students\StudentRegController@updateData');
+//    Route::post('/student/insertData','Students\StudentRegController@insertData');
+
+    Route::get('/student/studentView','Students\StudentRegController@view')->name('student_view');
+    Route::get('/student/studentAdd','Students\StudentRegController@add');
+    Route::get('/student/studentEdit/{id}','Students\StudentRegController@edit')->name('student_edit');
+    Route::get('/student/studentDetails/{id}','Students\StudentRegController@details')->name('student_details');
+    Route::post('/student/deleteData','Students\StudentRegController@deleteData');
+    Route::get('/student/yearClassWise','Students\StudentRegController@yearClassWise')->name('students_search');
+    Route::post('/student/updateData/{id}','Students\StudentRegController@updateData')->name('students_update');
+    Route::post('/student/insertData','Students\StudentRegController@insertData');
+
 
 });
 

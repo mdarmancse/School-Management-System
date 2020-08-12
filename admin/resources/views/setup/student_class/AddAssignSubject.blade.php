@@ -61,6 +61,7 @@
         </div>
 
 
+
         <!---------------------------------ZEROX COPY -------------------------------------------- -->
 
         <div style="visibility: hidden">
@@ -71,9 +72,9 @@
                         <div class="form-group col-md-3">
                             <label for="">Subjects</label>
                             <select id="subject_id" name="subject_id[]" class="custom-select custom-select-sm">
-                                <option selected>Select Subject</option>
-                                @foreach($subjects as $subjects)
-                                    <option value="{{$subjects->id}}">{{$subjects->subject}}</option>
+                                <option>Select Subject</option>
+                                @foreach($sub as $sub)
+                                    <option value="{{$sub->id}}">{{$sub->subject}}</option>
                                 @endforeach
                             </select>
                         </div>

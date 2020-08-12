@@ -22,6 +22,7 @@ class AssignSubjectController extends Controller
 
 
         $data['subjects']=SubjectModel::all();
+        $data['sub']=SubjectModel::all();
         $data['classes']=StudentClassModel::all();
 
         return view('setup.student_class.AddAssignSubject',$data);
@@ -62,7 +63,7 @@ class AssignSubjectController extends Controller
         $data['editData']=AssignSubjectModel::where('class_id',$class_id)->orderBy("subject_id","asc")->get();
 
 
-        return view('setup.student_class.DetailsFeeAmount',$data);
+        return view('setup.student_class.DetailsSubjectMark',$data);
     }
 
     function updateData(Request $request,$class_id){
