@@ -150,12 +150,23 @@ Route::group(['prefix'=>'/students'],function (){
     Route::get('/student/studentView','Students\StudentRegController@view')->name('student_view');
     Route::get('/student/studentAdd','Students\StudentRegController@add');
     Route::get('/student/studentEdit/{student_id}','Students\StudentRegController@edit')->name('student_edit');
-    Route::get('/student/studentDetails/{id}','Students\StudentRegController@details')->name('student_details');
+
+    Route::get('/student/studentPromotion/{student_id}','Students\StudentRegController@promotion')->name('student_promotion');
+    Route::post('/student/studentPromotion/{student_id}','Students\StudentRegController@promotionStore')->name('students_promotionStore');
+
+    Route::get('/student/studentDetails/{student_id}','Students\StudentRegController@details')->name('student_details');
+
     Route::post('/student/deleteData','Students\StudentRegController@deleteData');
     Route::get('/student/yearClassWise','Students\StudentRegController@yearClassWise')->name('students_search');
     Route::post('/student/updateData/{student_id}','Students\StudentRegController@updateData')->name('students_update');
     Route::post('/student/insertData','Students\StudentRegController@insertData')->name('students_insert');
 
+
+    //Roll Generate
+    Route::get('/roll/view','Students\StudentRollController@view')->name('roll_view');
+    Route::get('/roll/getStudent','Students\StudentRollController@getStudent')->name('roll_getStudent');
+
+    Route::post('/roll/insertData','Students\StudentRollController@insertData')->name('roll_insert');
 
 });
 

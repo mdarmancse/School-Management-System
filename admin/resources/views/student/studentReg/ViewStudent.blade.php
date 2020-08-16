@@ -52,6 +52,11 @@
                         <th class="th-sm">Class</th>
                         <th class="th-sm">Image</th>
                         <th class="th-sm">Edit</th>
+                        <th class="th-sm">Promotion</th>
+                        <th class="th-sm">Details</th>
+
+
+
                         <th class="th-sm">Delete</th>
                     </tr>
                     </thead>
@@ -67,9 +72,10 @@
                             <th class="th-sm">{{$AllData['student_class']['name']}}</th>
                             <th class="th-sm">{{$AllData['year']['year']}}</th>
                             <th class="th-sm"><img src="{{!empty($AllData['student']['image'])?url('public/students_images/'.$AllData['student']['image']):url('public/images/noimg.png')}}"
-                                                   style="width: 70px;height: 80px"
-                                /></th>
+                                                   style="width: 70px;height: 80px"></th>
                             <th class="th-sm"><a href="{{route('student_edit',$AllData->student_id)}}" ><i class="fas fa-edit"></i></a></th>
+                            <th class="th-sm"><a href="{{route('student_promotion',$AllData->student_id)}}" ><i class="fa fa-arrow-circle-up"></i></a></th>
+                            <th class="th-sm"><a href="{{route('student_details',$AllData->student_id)}}" ><i class="fas fa-eye"></i></a></th>
 
                             <th class="th-sm"><a href="" ><i class="fas fa-trash-alt"></i></a></th>
                         </tr>
@@ -90,6 +96,9 @@
                             <th class="th-sm">Class</th>
                             <th class="th-sm">Image</th>
                             <th class="th-sm">Edit</th>
+                            <th class="th-sm">Promotion</th>
+                            <th class="th-sm">Details</th>
+
                             <th class="th-sm">Delete</th>
                         </tr>
                         </thead>
@@ -105,9 +114,10 @@
                                 <th class="th-sm">{{$AllData['student_class']['name']}}</th>
                                 <th class="th-sm">{{$AllData['year']['year']}}</th>
                                 <th class="th-sm"><img src="{{!empty($AllData['student']['image'])?url('public/students_images/'.$AllData['student']['image']):url('public/images/noimg.png')}}"
-                                                       style="width: 70px;height: 80px"
-                                    /></th>
+                                                       style="width: 70px;height: 80px"></th>
                                 <th class="th-sm"><a href="{{route('student_edit',$AllData->student_id)}}" ><i class="fas fa-edit"></i></a></th>
+                                <th class="th-sm"><a href="{{route('student_promotion',$AllData->student_id)}}" ><i class="fa fa-arrow-circle-up"></i></a></th>
+                                <th class="th-sm"><a href="{{route('student_details',$AllData->student_id)}}" ><i class="fas fa-eye"></i></a></th>
 
                                 <th class="th-sm"><a href="" ><i class="fas fa-trash-alt"></i></a></th>
                             </tr>

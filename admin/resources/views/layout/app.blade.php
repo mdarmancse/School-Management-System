@@ -14,6 +14,7 @@
 	<link href="{{asset('css/responsive.css')}}" rel="stylesheet" >
 	<link href="{{asset('css/datatables.min.css')}}" rel="stylesheet" >
 	<link href="{{asset('css/datatables-select.min.css')}}" rel="stylesheet" >
+	<link href="{{asset('css/notify.min.css')}}" rel="stylesheet" >
 </head>
 <body class="fix-header fix-sidebar">
 

@@ -17,6 +17,7 @@
 
             <form action="{{(@$editData)?route('students_update',$editData->student_id):route('students_insert')}}" id="myForm" method="POST">@csrf
 
+
                 <div class="add_item">
                     <input type="hidden" name="id" value="{{(@$editData->id)}}">
                     <div class="form-row">

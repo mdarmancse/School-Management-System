@@ -12,6 +12,7 @@ use App\Model\StudentShiftModel;
 use App\Model\StudentGroupModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class StudentRegController extends Controller
 {
@@ -62,6 +63,19 @@ class StudentRegController extends Controller
 
     }
 
+    function promotion($student_id){
+
+        $data['editData']=AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        $data['year']=StudentYearModel::orderBy('id','desc')->get();
+        $data['group']=StudentGroupModel::all();
+        $data['shift']=StudentShiftModel::all();
+        $data['classes']=StudentClassModel::all();
+
+        return view('student.studentReg.PromotionStudent',$data);
+
+    }
+
+
 
 
     function deleteData(Request $request){
@@ -81,12 +95,6 @@ class StudentRegController extends Controller
     }
 
 
-    function details(Request $req,$class_id){
-        $data['editData']=AssignSubjectModel::where('class_id',$class_id)->orderBy("subject_id","asc")->get();
-
-
-        return view('setup.student_class.DetailsSubjectMark',$data);
-    }
 
     function updateData(Request $request,$student_id){
 
@@ -111,7 +119,6 @@ class StudentRegController extends Controller
             $user->save();
 
             $assign_student=AssignStudent::where('id',$request->id)->where('student_id',$student_id)->first();
-            $assign_student->student_id=$user->id;
             $assign_student->year_id=$request->year_id;
             $assign_student->class_id=$request->class_id;
             $assign_student->group_id=$request->group_id;
@@ -119,8 +126,7 @@ class StudentRegController extends Controller
             $assign_student->save();
 
             $discount_student= DiscountStudent::where('assign_student_id',$request->id)->first();
-            $discount_student->assign_student_id=$assign_student->id;
-            $discount_student->fee_category_id="1";
+
             $discount_student->discount=$request->discount;
             $discount_student->save();
 
@@ -213,6 +219,64 @@ class StudentRegController extends Controller
 
         return redirect()->route('student_view')->with('success','Data inserted successfully');
     }
+
+
+    function promotionStore(Request $request,$student_id){
+
+        DB::transaction(function () use($request,$student_id){
+
+            $user=UserModel::where('id',$student_id)->first();
+            $user->name=$request->name;
+            $user->fatherName=$request->fatherName;
+            $user->motherName=$request->motherName;
+            $user->email=$request->email;
+            $user->mobile=$request->mobile;
+            $user->address=$request->address;
+            $user->gender=$request->gender;
+            $user->dob=date('Y-m-d',strtotime($request->dob));
+            if ($request->file('image')){
+                $file=$request->file('image');
+                @unlink(public_path('uploads/students_images/'.$user->image));
+                $fileName=date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('uploads/students_images'),$fileName);
+                $user['image']=$fileName;
+            }
+            $user->save();
+
+            $assign_student=new AssignStudent();
+            $assign_student->student_id=$student_id;
+            $assign_student->year_id=$request->year_id;
+            $assign_student->class_id=$request->class_id;
+            $assign_student->group_id=$request->group_id;
+            $assign_student->shift_id=$request->shift_id;
+            $assign_student->save();
+
+            $discount_student= new DiscountStudent();
+            $discount_student->assign_student_id=$assign_student->id;
+            $discount_student->fee_category_id="1";
+            $discount_student->discount=$request->discount;
+            $discount_student->save();
+
+        });
+
+
+
+
+
+        return redirect()->route('student_view')->with('success','Student Promoted');
+    }
+
+    public function details($student_id){
+        $data['details']=AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();;
+        $pdf = PDF::loadView('student.studentReg.DetailsPdf', $data);
+        $pdf->SetProtection(['copy','print'],'','pass');
+        return $pdf->stream('document.pdf');
+
+
+
+    }
+
+
 
 
 }

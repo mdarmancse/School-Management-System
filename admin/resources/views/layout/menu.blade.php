@@ -44,10 +44,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <i class="fas fa-user-graduate"></i> </span><span class="hide-menu">Manage Student</span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
 
-                            <li><a href="{{url('students/student/studentView')}}">Manage Student</a></li>
+                            <li><a href="{{url('students/student/studentView')}}">Student Registration</a></li>
+                            <li><a href="{{url('students/roll/view')}}">Roll Generate</a></li>
 
                         </ul>
                     </li>
+
+
 
                     <li> <a href="{{url('/messeges')}}" ><span> <i class="fas fa-envelope"></i> </span><span class="hide-menu">Messeges</span></a></li>
                     <li> <a href="{{url('/reviews')}}" ><span> <i class="fab fa-rocketchat"></i> </span><span class="hide-menu">Reviews</span></a></li>
