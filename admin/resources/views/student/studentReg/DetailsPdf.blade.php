@@ -12,8 +12,10 @@
         .col-md-12{
             width: 100%;
         }
-        .text-cente{
+        .text-center{
             text-align: center;
+
+            margin-left: 3rem;
         }
         .row{
 
@@ -24,6 +26,13 @@
             height: 100px;
 
         }
+        .mt{
+            margin-top: 1rem;
+        }
+        .sign{
+            text-align: center;
+        }
+
 
 
     </style>
@@ -34,54 +43,57 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <table width="80%">
+        <div class="col-md-12 text-center">
+            <table width="100%">
                 <tr>
-{{--                <td width="33%" class="text-center"><img src="{{asset('images/laravel.jpg')}}"--}}
-{{--                                                         style="width: 100px;height: 100px"></td>--}}
-                <td class="text-center">
-                    <h4><strong>ABC SCHOOL</strong></h4>
-                    <h5>Hathazari,Chittagong</h5>
-                    <h6>Mobile:0187281564</h6>
-                </td>
-                <td width="33%" class="text-center">
-{{--                    <img src="{{asset('uploads/students_images/'.$details['student']['image'])}}" class="image" />--}}
+                    {{--                <td width="33%" class="text-center"><img src="{{asset('images/laravel.jpg')}}"--}}
+                    {{--                                                         style="width: 100px;height: 100px"></td>--}}
+                    <td class="text-center">
+                        <h4><strong>ABC SCHOOL</strong></h4>
+                        <h5>Hathazari,Chittagong</h5>
+                        <h6>Mobile:01787281564</h6>
+                    </td>
+                    {{--                    <td width="33%" class="text-center">--}}
+                    {{--                        --}}{{--                    <img src="{{asset('uploads/students_images/'.$details['student']['image'])}}" class="image" />--}}
 
-{{--                    <img src="{{asset('public/images/laravel.jpg')}}">--}}
+                    {{--                        --}}{{--                    <img src="{{asset('public/images/laravel.jpg')}}">--}}
 
 
-                </td>
+                    {{--                    </td>--}}
                 </tr>
             </table>
         </div>
 
-        <div class="col-md-12 text-center">
+        <div class="col-md-12 text-center mt">
             <h5 style="font-weight: bold;padding: -25px;"> Student Registration Card</h5>
+            <hr style="border: solid 1px;width: 60%;color: black;margin-bottom: 0px;"/><br/><br/>
+
         </div>
-        <div style="clear: both;margin-top: 10%"></div>
+        <div style="clear: both;margin-top: 7%"></div>
         <div class="col-md-12">
+
            <table border="1" width="100%">
                <tbody>
 
                <tr>
-                   <td style="width: 50%">Student Name</td>
+                   <td style="width: 50%">Student Name:</td>
                    <td>{{$details['student']['name']}}</td>
                </tr>
 
                <tr>
-                   <td style="width: 50%">Father Name</td>
+                   <td style="width: 50%">Father Name:</td>
                    <td>{{$details['student']['fatherName']}}</td>
                </tr>
                <tr>
-                   <td style="width: 50%">Mother Name</td>
+                   <td style="width: 50%">Mother Name:</td>
                    <td>{{$details['student']['motherName']}}</td>
                </tr>
                <tr>
-                   <td style="width: 50%">Year</td>
+                   <td style="width: 50%">Year:</td>
                    <td>{{$details['year']['year']}}</td>
                </tr>
                <tr>
-                   <td style="width: 50%">Class</td>
+                   <td style="width: 50%">Class:</td>
                    <td>{{$details['student_class']['name']}}</td>
                </tr>
                <tr>
@@ -128,9 +140,11 @@
             <tr>
                 <td style="width: 30%"></td>
                 <td style="width: 30%"></td>
-                <td style="width: 40%;text-align: center;"></td>
-                <hr style="border: solid 1px;width: 60%;color: black;margin-bottom: 0px;"/>
-                <p style="text-align: center;">Principal/Headmaster</p>
+                <td style="width: 40%;text-align: center;">
+                    <hr style="border: solid 1px;width: 60%;color: black;margin-bottom: 0px;"/><br/>
+                    <h6 class="sign">Principal/Headmaster</h6>
+                </td>
+
             </tr>
 
             </tbody>

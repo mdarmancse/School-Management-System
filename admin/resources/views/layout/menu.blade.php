@@ -46,6 +46,9 @@
 
                             <li><a href="{{url('students/student/studentView')}}">Student Registration</a></li>
                             <li><a href="{{url('students/roll/view')}}">Roll Generate</a></li>
+                            <li><a href="{{url('students/regFee/view')}}">Registration Fee</a></li>
+                            <li><a href="{{url('students/monthly/view')}}">Monthly Fee</a></li>
+                            <li><a href="{{url('students/examFee/view')}}">Exam Fee</a></li>
 
                         </ul>
                     </li>

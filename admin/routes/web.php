@@ -164,10 +164,27 @@ Route::group(['prefix'=>'/students'],function (){
 
     //Roll Generate
     Route::get('/roll/view','Students\StudentRollController@view')->name('roll_view');
+
     Route::get('/roll/getStudent','Students\StudentRollController@getStudent')->name('roll_getStudent');
 
     Route::post('/roll/insertData','Students\StudentRollController@insertData')->name('roll_insert');
 
+    //Registration Fee
+    Route::get('/regFee/view','Students\RegistrationFeeController@view')->name('regFee_view');
+    Route::get('/regFee/getStudent','Students\RegistrationFeeController@getStudent')->name('regFee_getStudent');
+    Route::get('/regFee/paySlip','Students\RegistrationFeeController@paySlip')->name('regFee_payslip');
+
+
+    //Monthly Fee
+    Route::get('/monthly/view','Students\MonthlyFeeController@view')->name('monthly_view');
+    Route::get('/monthly/getStudent','Students\MonthlyFeeController@getStudent')->name('monthly_getStudent');
+    Route::get('/monthly/paySlip','Students\MonthlyFeeController@paySlip')->name('monthly_payslip');
+
+
+    //Exam Fee
+    Route::get('/examFee/view','Students\ExamFeeController@view')->name('examFee_view');
+    Route::get('/examFee/getStudent','Students\ExamFeeController@getStudent')->name('examFee_getStudent');
+    Route::get('/examFee/paySlip','Students\ExamFeeController@paySlip')->name('examFee_payslip');
 });
 
 
