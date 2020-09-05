@@ -190,7 +190,7 @@ Route::group(['prefix'=>'/students'],function (){
 Route::group(['prefix'=>'/employee'],function (){
 
 
-//USER
+//Employee Registration
     Route::get('/reg/view','Employee\EmployeeRegController@view')->name('employee_view');
     Route::get('/reg/employeeAdd','Employee\EmployeeRegController@add')->name('employee_add');;
     Route::get('/reg/employeeEdit/{id}','Employee\EmployeeRegController@edit')->name('employee_edit');
@@ -198,5 +198,11 @@ Route::group(['prefix'=>'/employee'],function (){
     Route::post('/reg/insertData','Employee\EmployeeRegController@insertData')->name('employee_insert');
     Route::get('/reg/details/{id}','Employee\EmployeeRegController@details')->name('employee_details');
 
+//Employee Salary
+    Route::get('/salary/view','Employee\EmployeeSalaryController@view')->name('employee_salary_view');
 
+    Route::get('/salary/salaryIncrement/{id}','Employee\EmployeeSalaryController@increment')->name('employee_salary_increment');
+    Route::post('/salary/store/{id}','Employee\EmployeeSalaryController@store')->name('employee_salary_store');
+
+    Route::get('/salary/details/{id}','Employee\EmployeeSalaryController@details')->name('employee_salary_details');
 });

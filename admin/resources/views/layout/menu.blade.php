@@ -57,10 +57,8 @@
                         <ul class="dropdown-menu forAnimate" role="menu">
 
                             <li><a href="{{url('employee/reg/view')}}">Employee Registration</a></li>
-                            <li><a href="{{url('students/roll/view')}}">Roll Generate</a></li>
-                            <li><a href="{{url('students/regFee/view')}}">Registration Fee</a></li>
-                            <li><a href="{{url('students/monthly/view')}}">Monthly Fee</a></li>
-                            <li><a href="{{url('students/examFee/view')}}">Exam Fee</a></li>
+                            <li><a href="{{url('employee/salary/view')}}">Employee Salary</a></li>
+
 
                         </ul>
                     </li>

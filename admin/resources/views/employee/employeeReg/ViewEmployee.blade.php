@@ -12,30 +12,6 @@
             <form action="{{url('students/student/yearClassWise')}}" method="GET">
                 <div class="row mt-5">
 
-{{--                    <div class="form-group col-md-3">--}}
-{{--                        <label for="">Year:</label>--}}
-
-{{--                        <select id="yearId"  name="year_id" class="form-control">--}}
-{{--                            <option>Select Year</option>--}}
-{{--                            @foreach($year as $year)--}}
-{{--                                <option value="{{$year->id}}" {{(@$year_id==$year->id)?"selected":""}}>{{$year->year}}</option>--}}
-{{--                            @endforeach--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
-{{--                    <div class="form-group col-md-3">--}}
-{{--                        <label for="">Class:</label>--}}
-
-{{--                        <select id="classId" name="class_id"  class="form-control">--}}
-{{--                            <option>Select Class</option>--}}
-{{--                            @foreach($classes as $cls)--}}
-{{--                                <option value="{{$cls->id}}" {{(@$class_id==$cls->id)?"selected":""}}>{{$cls->name}}</option>--}}
-{{--                            @endforeach--}}
-{{--                        </select>--}}
-
-{{--                    </div>--}}
-{{--                    <div class="form-group col-md-2 pt-4">--}}
-{{--                        <button type="submit" class="btn btn-warning btn-sm" name="search"><i class="fas fa-search"></i> Search</button>--}}
-{{--                    </div>--}}
 
                     <div id="mainDiv" class="col-md-12">
 

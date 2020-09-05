@@ -42,21 +42,6 @@ class EmployeeRegController extends Controller
 
     }
 
-    function promotion($student_id){
-
-        $data['editData']=AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
-        $data['year']=StudentYearModel::orderBy('id','desc')->get();
-        $data['group']=StudentGroupModel::all();
-        $data['shift']=StudentShiftModel::all();
-        $data['classes']=StudentClassModel::all();
-
-        return view('student.studentReg.PromotionStudent',$data);
-
-    }
-
-
-
-
     function deleteData(Request $request){
         $id=$request->input('id');
 
@@ -72,8 +57,6 @@ class EmployeeRegController extends Controller
 
 
     }
-
-
 
     function updateData(Request $request,$id){
 
@@ -105,7 +88,6 @@ class EmployeeRegController extends Controller
 
         return redirect()->route('employee_view')->with('success','Data inserted successfully');
     }
-
 
     function insertData(Request $request){
 
@@ -180,51 +162,6 @@ class EmployeeRegController extends Controller
         return redirect()->route('employee_view')->with('success','Data inserted successfully');
     }
 
-
-    function promotionStore(Request $request,$student_id){
-
-        DB::transaction(function () use($request,$student_id){
-
-            $user=UserModel::where('id',$student_id)->first();
-            $user->name=$request->name;
-            $user->fatherName=$request->fatherName;
-            $user->motherName=$request->motherName;
-            $user->email=$request->email;
-            $user->mobile=$request->mobile;
-            $user->address=$request->address;
-            $user->gender=$request->gender;
-            $user->dob=date('Y-m-d',strtotime($request->dob));
-            if ($request->file('image')){
-                $file=$request->file('image');
-                @unlink(public_path('uploads/students_images/'.$user->image));
-                $fileName=date('YmdHi').$file->getClientOriginalName();
-                $file->move(public_path('uploads/students_images'),$fileName);
-                $user['image']=$fileName;
-            }
-            $user->save();
-
-            $assign_student=new AssignStudent();
-            $assign_student->student_id=$student_id;
-            $assign_student->year_id=$request->year_id;
-            $assign_student->class_id=$request->class_id;
-            $assign_student->group_id=$request->group_id;
-            $assign_student->shift_id=$request->shift_id;
-            $assign_student->save();
-
-            $discount_student= new DiscountStudent();
-            $discount_student->assign_student_id=$assign_student->id;
-            $discount_student->fee_category_id="1";
-            $discount_student->discount=$request->discount;
-            $discount_student->save();
-
-        });
-
-
-
-
-
-        return redirect()->route('student_view')->with('success','Student Promoted');
-    }
 
     public function details($id){
         $data['details']=UserModel::find($id);

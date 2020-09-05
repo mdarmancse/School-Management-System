@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 <div id="layoutSidenav_content">
-19 Minute vdo 24
+
     <div id="" class="container mt-4">
 
         <ol class="breadcrumb mt-4">
