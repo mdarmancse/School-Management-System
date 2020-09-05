@@ -187,4 +187,16 @@ Route::group(['prefix'=>'/students'],function (){
     Route::get('/examFee/paySlip','Students\ExamFeeController@paySlip')->name('examFee_payslip');
 });
 
+Route::group(['prefix'=>'/employee'],function (){
 
+
+//USER
+    Route::get('/reg/view','Employee\EmployeeRegController@view')->name('employee_view');
+    Route::get('/reg/employeeAdd','Employee\EmployeeRegController@add')->name('employee_add');;
+    Route::get('/reg/employeeEdit/{id}','Employee\EmployeeRegController@edit')->name('employee_edit');
+    Route::post('/reg/updateData/{id}','Employee\EmployeeRegController@updateData')->name('employee_update');
+    Route::post('/reg/insertData','Employee\EmployeeRegController@insertData')->name('employee_insert');
+    Route::get('/reg/details/{id}','Employee\EmployeeRegController@details')->name('employee_details');
+
+
+});

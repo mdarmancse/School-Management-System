@@ -52,6 +52,18 @@
 
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> <i class="fas fa-user-graduate"></i> </span><span class="hide-menu">Manage Employee</span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+
+                            <li><a href="{{url('employee/reg/view')}}">Employee Registration</a></li>
+                            <li><a href="{{url('students/roll/view')}}">Roll Generate</a></li>
+                            <li><a href="{{url('students/regFee/view')}}">Registration Fee</a></li>
+                            <li><a href="{{url('students/monthly/view')}}">Monthly Fee</a></li>
+                            <li><a href="{{url('students/examFee/view')}}">Exam Fee</a></li>
+
+                        </ul>
+                    </li>
 
 
 
