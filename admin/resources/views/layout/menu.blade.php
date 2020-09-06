@@ -58,6 +58,7 @@
 
                             <li><a href="{{url('employee/reg/view')}}">Employee Registration</a></li>
                             <li><a href="{{url('employee/salary/view')}}">Employee Salary</a></li>
+                            <li><a href="{{url('employee/leave/view')}}">Employee Leave</a></li>
 
 
                         </ul>

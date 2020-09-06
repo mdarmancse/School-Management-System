@@ -205,4 +205,12 @@ Route::group(['prefix'=>'/employee'],function (){
     Route::post('/salary/store/{id}','Employee\EmployeeSalaryController@store')->name('employee_salary_store');
 
     Route::get('/salary/details/{id}','Employee\EmployeeSalaryController@details')->name('employee_salary_details');
+
+
+    //Employee leave
+    Route::get('/leave/view','Employee\EmployeeLeaveController@view')->name('employee_leave_view');
+    Route::get('/leave/employeeAdd','Employee\EmployeeLeaveController@add')->name('employee_leave_add');;
+    Route::get('/leave/employeeEdit/{id}','Employee\EmployeeLeaveController@edit')->name('employee_leave_edit');
+    Route::post('/leave/updateData/{id}','Employee\EmployeeLeaveController@updateData')->name('employee_leave_update');
+    Route::post('/leave/insertData','Employee\EmployeeLeaveController@insertData')->name('employee_leave_insert');
 });

@@ -9,7 +9,7 @@
                 <li class="breadcrumb-item active">Employee List</li>
             </ol>
             <a href="{{url('employee/reg/employeeAdd')}}" > <span class=" btn btn-sm btn-danger mt-4"><i class="fas fa-plus"></i> Add Employee</span></a>
-            <form action="{{url('students/student/yearClassWise')}}" method="GET">
+
                 <div class="row mt-5">
 
 
@@ -67,7 +67,7 @@
                     </div>
 
                 </div>
-            </form>
+
         </div>
     </div>
 
