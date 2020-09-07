@@ -22,7 +22,7 @@ class EmployeeLeaveController extends Controller
 {
     function view(){
 
-        $data['allData']=EmployeeLeave::all();
+        $data['allData']=EmployeeLeave::orderBy('id','desc')->get();
         return view('employee.employeeLeave.ViewEmployeeLeave',$data);
 
 

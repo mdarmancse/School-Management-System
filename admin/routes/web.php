@@ -213,4 +213,13 @@ Route::group(['prefix'=>'/employee'],function (){
     Route::get('/leave/employeeEdit/{id}','Employee\EmployeeLeaveController@edit')->name('employee_leave_edit');
     Route::post('/leave/updateData/{id}','Employee\EmployeeLeaveController@updateData')->name('employee_leave_update');
     Route::post('/leave/insertData','Employee\EmployeeLeaveController@insertData')->name('employee_leave_insert');
+
+
+    //Employee Attendence
+    Route::get('/attend/view','Employee\EmployeeAttendanceController@view')->name('employee_attend_view');
+    Route::get('/attend/employeeAdd','Employee\EmployeeAttendanceController@add')->name('employee_attend_add');;
+    Route::get('/attend/employeeEdit/{date}','Employee\EmployeeAttendanceController@edit')->name('employee_attend_edit');
+    Route::post('/attend/updateData/{id}','Employee\EmployeeAttendanceController@updateData')->name('employee_attend_update');
+    Route::post('/attend/insertData','Employee\EmployeeAttendanceController@insertData')->name('employee_attend_insert');
+    Route::get('/attend/details/{date}','Employee\EmployeeAttendanceController@details')->name('employee_attend_details');
 });
